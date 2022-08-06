@@ -8,34 +8,26 @@ var btn1 = document.getElementById('btn1'); //variable btn1 gets html element bt
 var btn2 = document.getElementById('btn2'); //variable btn1 gets html element btn2
 var btn3 = document.getElementById('btn3'); //variable btn1 gets html element btn3
 var btn4 = document.getElementById('btn4'); //variable btn1 gets html element btn4
-
 var questionContainerEl = document.getElementById('question-container'); //variable gets html element question-container
 var questionEl = document.getElementById('question'); //variable questionElement gets html element question
 var answerButtonsEl = document.getElementById('answer-buttons'); //variable answerButtonsElement = answer-buttons
-var buttons = document.getElementsByClassName('btn');
-
-var score = 0;
-
-let shuffledQuestions, currentQuestionIndex; // variables shuffledQuestions, currentquestions
-
-//todo after page loads user is presented with start button
+var score = 0; //variable for keeping score of correct answers
+var timeLeft = 60; //variable timeLeft total time on timer
 var startButton = document.getElementById('start-btn'); //variable startButton gets html element start-btn
 var nextButton = document.getElementById('next-btn');   //variable nextButton gets html element next-btn
-nextButton.classList.add('hide');
 
+nextButton.classList.add('hide'); //hide next button
 
-//todo when user clicks start button timer starts, question1 and answer1 options appear
-
-startButton.addEventListener('click', function startGame() {
-    questionOne();
-    startButton.classList.add('hide')
-    questionContainerEl.classList.remove('hide')   
+startButton.addEventListener('click', function startGame() { //when user clicks start button
+    questionOne();  //questionOne is launched
+    startButton.classList.add('hide'); //hide the start button
+    questionContainerEl.classList.remove('hide');  //show question-container
+    countdown(); //call countdown function
 });
 
-countdown();
-
+//function for question 1
 function questionOne() {
-   buttonReset();
+   buttonReset(); //call buttonReset function to enable buttons
     questionEl.textContent = "What does CSS stand for?";
     btn1.textContent = "Creative Styling Sheet";
     btn2.textContent = "Changing Style Selectors";
@@ -46,13 +38,12 @@ function questionOne() {
     btn3.onclick = function() {correctAnswer()};
     btn4.onclick = function() {incorrectAnswer()};
     
-    nextButton.addEventListener('click', function nextQuestion1() {
-        questionTwo();
-         
+    nextButton.addEventListener('click', function nextQuestion1() { //click next button 
+        questionTwo(); //call function for question 2
     });
-    
 };
 
+//function for question 2...
 function questionTwo() {
     buttonReset();
     questionEl.textContent = "What does HTML stand for?";
@@ -67,7 +58,6 @@ function questionTwo() {
 
     nextButton.addEventListener('click', function nextQuestion2() {
         questionThree();
-         
     });
 };
 
@@ -139,35 +129,34 @@ function questionFour() {
      btn3.onclick = function() {incorrectAnswer()};
      btn4.onclick = function() {incorrectAnswer()};
 
-     nextButton.addEventListener('click', function nextQuestion6() {
-        gameOver();
+     nextButton.addEventListener('click', function nextQuestion6() { //click next button
+        gameOver(); //call function for gameOver
         
     });
  };
 
-
+//gameOver function
  function gameOver() {
-    nextButton.classList.add('hide');
-    answerButtonsEl.classList.add('hide');
-    questionEl.textContent = "Game Over. You scored " + score + " out of 6.";
-}
+    nextButton.classList.add('hide'); //hide buttons
+    answerButtonsEl.classList.add('hide'); //hide buttons
+    timerEl.classList.add('hide'); //hide timer
+    questionEl.textContent = "Game Over. You scored " + score + " out of 6."; //Tell user their score
+    
+};
  
 //timer function
+
 function countdown() { 
-    var timeLeft = 60;
+     //user is given 60 seconds
     var timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = "Timer: " + timeLeft + " seconds left.";
-    //todo when timer runs to zero message shows below saying incorrect
-    if(timeLeft === 0) {    
-      clearInterval(timeInterval); 
-      nextButton.classList.remove('hide');
-      timerEl.textContent = "Out of time. Game Over!" 
-      nextButton.addEventListener('click', function timeOut() {
-        gameOver();        
-        });     
+    
+    if(timeLeft === 0) {    // if time is 0
+      clearInterval(timeInterval); //clearInterval
+        gameOver();       //call gameover function     
     }    
-  }, 1000);
+  }, 1000); //time goes in seconds
 }
 
 //correct function
@@ -180,9 +169,9 @@ function correctAnswer() {
     btn2.disabled = true;
     btn3.disabled = true;
     btn4.disabled = true;
-    score = score + 1;
-   
+    score = score + 1; // adds 1 to score 
 }
+//incorrect function
 function incorrectAnswer() {
     incorrectEl.textContent = "Incorrect! 😫";
     incorrectEl.classList.remove('hide');
@@ -192,8 +181,11 @@ function incorrectAnswer() {
     btn2.disabled = true;
     btn3.disabled = true;
     btn4.disabled = true;
-    score = score + 0;
+    score = score + 0;  // adds 0 to score 
+    timeLeft = timeLeft - 5; // minus 5 seconds for wrong answers
+    
 }
+// function to re-enable buttons
 function buttonReset() {
     btn1.disabled = false;
     btn2.disabled = false;
@@ -206,15 +198,6 @@ function buttonReset() {
 
     
 
-//todo when user clicks correct answer a message shows below saying correct
-//todo when user clicks incorrect answer a message shows below saying incorrect
-
-//todo when user has answered, next button appears
-
-
-
-//todo when user clicks next new question and answers appear
-//todo when user clicks wrong question timer loses seconds
 
 
 
