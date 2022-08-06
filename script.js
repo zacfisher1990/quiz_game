@@ -13,6 +13,7 @@ var questionContainerEl = document.getElementById('question-container'); //varia
 var questionEl = document.getElementById('question'); //variable questionElement gets html element question
 var answerButtonsEl = document.getElementById('answer-buttons'); //variable answerButtonsElement = answer-buttons
 var buttons = document.getElementsByClassName('btn');
+
 var score = 0;
 
 let shuffledQuestions, currentQuestionIndex; // variables shuffledQuestions, currentquestions
@@ -144,13 +145,13 @@ function questionFour() {
     });
  };
 
+
  function gameOver() {
+    nextButton.classList.add('hide');
     answerButtonsEl.classList.add('hide');
     questionEl.textContent = "Game Over. You scored " + score + " out of 6.";
-
- }
+}
  
-
 //timer function
 function countdown() { 
     var timeLeft = 60;
@@ -163,17 +164,11 @@ function countdown() {
       nextButton.classList.remove('hide');
       timerEl.textContent = "Out of time. Game Over!" 
       nextButton.addEventListener('click', function timeOut() {
-        gameOver();
-        nextButton.classList.add('hide')
-        questionContainerEl.classList.remove('hide')  
-    }); 
-         
+        gameOver();        
+        });     
     }    
   }, 1000);
 }
-
-
-
 
 //correct function
 function correctAnswer() {
@@ -185,19 +180,19 @@ function correctAnswer() {
     btn2.disabled = true;
     btn3.disabled = true;
     btn4.disabled = true;
-    
+    score = score + 1;
    
 }
 function incorrectAnswer() {
     incorrectEl.textContent = "Incorrect! 😫";
     incorrectEl.classList.remove('hide');
     correctEl.classList.add('hide');
+    nextButton.classList.remove('hide');
     btn1.disabled = true;
     btn2.disabled = true;
     btn3.disabled = true;
     btn4.disabled = true;
-    nextButton.classList.remove('hide');
-    
+    score = score + 0;
 }
 function buttonReset() {
     btn1.disabled = false;
