@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Quiz</title>
+  <title>Coding Quiz</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
+    <div id="game-title">Coding Quiz</div>
+    <div id="instructions"></div>
     <div id ="question-container" class="hide">
         <div id ="question">Question</div>
         <div id="answer-buttons" class="btn-grid">
@@ -19,10 +21,33 @@
         <button id="btn4" class="btn"></button> 
         </div>
     </div>
+
+    <form id="post" method="POST">
+      <div class="name">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter name" />
+      </div>
+      </form>
+      <div id="score"></div>
+
+      
+      <button id="enter">Enter</button>
+      <div id="score-board" class="score-list">
+        <h2 id="high-scores">HIGH SCORES</h2>
+        <ul>
+          <li>1.<span id="stored-name"></span><span id="stored-sore"></span></li>
+          <li>2.</li>
+          <li>3.</li>
+          <li>4.</li>
+        </ul>
+      </div>
+    
+
     <div class="controls">
          <button id="start-btn" class="start-btn btn">Start</button>
-         <button id="next-btn" class="next-btn btn">Next</button>
-        <!-- <button id="restar-btn">Restart</button> -->
+         <button id="next-btn" class="next-btn btn">Next</button> 
+
+        <!-- <button id="restart-btn">Restart</button> -->
     </div>
     <div id="countdown"></div>
     <div id="correct"></div>

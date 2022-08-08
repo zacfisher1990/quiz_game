@@ -15,12 +15,21 @@ var score = 0; //variable for keeping score of correct answers
 var timeLeft = 60; //variable timeLeft total time on timer
 var startButton = document.getElementById('start-btn'); //variable startButton gets html element start-btn
 var nextButton = document.getElementById('next-btn');   //variable nextButton gets html element next-btn
+var gameTitle = document.getElementById('game-title');
+var instructions = document.getElementById('instructions');
 
+
+
+
+instructions.textContent = "You have 1 minute to answer 10 questions. For every question you get wrong you lose 5 seconds on the timer. The quiz is over when you have completed all 10 questions or when the timer runs out. Good Luck!";
 nextButton.classList.add('hide'); //hide next button
 
+//function to start game
 startButton.addEventListener('click', function startGame() { //when user clicks start button
     questionOne();  //questionOne is launched
     startButton.classList.add('hide'); //hide the start button
+    gameTitle.classList.add('hide');
+    instructions.classList.add('hide');
     questionContainerEl.classList.remove('hide');  //show question-container
     countdown(); //call countdown function
 });
@@ -37,7 +46,6 @@ function questionOne() {
     btn2.onclick = function() {incorrectAnswer()};
     btn3.onclick = function() {correctAnswer()};
     btn4.onclick = function() {incorrectAnswer()};
-    
     nextButton.addEventListener('click', function nextQuestion1() { //click next button 
         questionTwo(); //call function for question 2
     });
@@ -55,7 +63,6 @@ function questionTwo() {
     btn2.onclick = function() {correctAnswer()};
     btn3.onclick = function() {incorrectAnswer()};
     btn4.onclick = function() {incorrectAnswer()};
-
     nextButton.addEventListener('click', function nextQuestion2() {
         questionThree();
     });
@@ -65,19 +72,16 @@ function questionThree() {
     buttonReset();
     questionEl.textContent = "String values must be enclosed within _______.";
     btn1.textContent = "Parentheses";
-    btn2.textContent = "Exclammation points";
+    btn2.textContent = "Dashes";
     btn3.textContent = "Periods";
-    btn4.textContent = "Quotation marks";
+    btn4.textContent = "Quotes";
     btn1.onclick = function() {incorrectAnswer()};
     btn2.onclick = function() {incorrectAnswer()};
     btn3.onclick = function() {incorrectAnswer()};
     btn4.onclick = function() {correctAnswer()};
-
     nextButton.addEventListener('click', function nextQuestion3() {
-        questionFour();
-         
+        questionFour();  
     });
-
 };
 
 function questionFour() {
@@ -91,12 +95,9 @@ function questionFour() {
      btn2.onclick = function() {incorrectAnswer()};
      btn3.onclick = function() {incorrectAnswer()};
      btn4.onclick = function() {incorrectAnswer()};
-
      nextButton.addEventListener('click', function nextQuestion4() {
-        questionFive();
-         
+        questionFive();  
     });
- 
  };
 
  function questionFive() {
@@ -110,10 +111,8 @@ function questionFour() {
      btn2.onclick = function() {incorrectAnswer()};
      btn3.onclick = function() {correctAnswer()};
      btn4.onclick = function() {incorrectAnswer()};
-
      nextButton.addEventListener('click', function nextQuestion5() {
-        questionSix();
-        
+        questionSix();   
     });
  };
 
@@ -128,30 +127,120 @@ function questionFour() {
      btn2.onclick = function() {incorrectAnswer()};
      btn3.onclick = function() {incorrectAnswer()};
      btn4.onclick = function() {incorrectAnswer()};
-
-     nextButton.addEventListener('click', function nextQuestion6() { //click next button
-        gameOver(); //call function for gameOver
-        
+     nextButton.addEventListener('click', function nextQuestion6() { 
+        questionSeven();  
     });
  };
+
+ function questionSeven() {
+    buttonReset();
+    questionEl.textContent = "How do you create a function in JavaScript?";
+    btn1.textContent = "function = myFunction()";
+    btn2.textContent = "function myFunction()";
+    btn3.textContent = "function:myFunction()";
+    btn4.textContent = "function === myFunction()";
+    btn1.onclick = function() {incorrectAnswer()};
+    btn2.onclick = function() {correctAnswer()};
+    btn3.onclick = function() {incorrectAnswer()};
+    btn4.onclick = function() {incorrectAnswer()};
+    nextButton.addEventListener('click', function nextQuestion7() {
+       questionEight();    
+   });
+};
+
+function questionEight() {
+    buttonReset();
+    questionEl.textContent = "How to write an IF statement in JavaScript?";
+    btn1.textContent = "if i == 5";
+    btn2.textContent = "if i = 5";
+    btn3.textContent = "if (i == 5)";
+    btn4.textContent = "if i == 5 then";
+    btn1.onclick = function() {incorrectAnswer()};
+    btn2.onclick = function() {incorrectAnswer()};
+    btn3.onclick = function() {correctAnswer()};
+    btn4.onclick = function() {incorrectAnswer()};
+    nextButton.addEventListener('click', function nextQuestion8() {
+       questionNine();      
+   });
+};
+
+function questionNine() {
+    buttonReset();
+    questionEl.textContent = "How can you add a comment in JavaScript?";
+    btn1.textContent = "<!--comment-->";
+    btn2.textContent = "/* comment */";
+    btn3.textContent = "# comment";
+    btn4.textContent = "// comment";
+    btn1.onclick = function() {incorrectAnswer()};
+    btn2.onclick = function() {incorrectAnswer()};
+    btn3.onclick = function() {incorrectAnswer()};
+    btn4.onclick = function() {correctAnswer()};
+    nextButton.addEventListener('click', function nextQuestion9() {
+       questionTen(); 
+   });
+};
+
+function questionTen() {
+    buttonReset();
+    questionEl.textContent = "What is the correct HTML for referring to an external CSS file?";
+    btn1.textContent = "<style src =\"style.css\">";
+    btn2.textContent = "<stylesheet>style.css</stylesheet>";
+    btn3.textContent = "<link rel=\"stylesheet\" href=\"style.css\" />";
+    btn4.textContent = "<link src=\"stylesheet\" href=\"style.js\" />";
+    btn1.onclick = function() {incorrectAnswer()};
+    btn2.onclick = function() {incorrectAnswer()};
+    btn3.onclick = function() {correctAnswer()};
+    btn4.onclick = function() {incorrectAnswer()};
+
+    nextButton.addEventListener('click', function nextQuestion10() {
+       gameOver();
+       
+   });
+};
+
+//variables for name input and score
+var nameInput = document.getElementById('name');
+var scoreInput = document.getElementById('score');
+var post = document.getElementById('post');
+var enterBtn = document.getElementById('enter');
+var scoreBoard = document.getElementById('score-board');
+
+var storedName = document.getElementById('stored-name');
+var storedScore = document.getElementById('stored-score');
+
+enterBtn.classList.add('hide');
+
+post.classList.add('hide');
+nameInput.classList.add('hide');
+scoreInput.classList.add('hide');
+scoreBoard.classList.add('hide');
 
 //gameOver function
  function gameOver() {
     nextButton.classList.add('hide'); //hide buttons
     answerButtonsEl.classList.add('hide'); //hide buttons
     timerEl.classList.add('hide'); //hide timer
-    questionEl.textContent = "Game Over. You scored " + score + " out of 6."; //Tell user their score
-    
+    questionEl.textContent = "Game Over. Enter your name below."; //Tell user their score
+    //todo enter name with score
+    post.classList.remove('hide');
+    nameInput.classList.remove('hide');
+    scoreInput.classList.remove('hide');
+    scoreInput.textContent = "Score: " + score;
+    enterBtn.classList.remove('hide');
+    scoreBoard.classList.remove('hide');
+    //todo store name and score input and display onto high score list
+  
 };
+
+
+
  
 //timer function
 
 function countdown() { 
-     //user is given 60 seconds
     var timeInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = "Timer: " + timeLeft + " seconds left.";
-    
     if(timeLeft === 0) {    // if time is 0
       clearInterval(timeInterval); //clearInterval
         gameOver();       //call gameover function     
