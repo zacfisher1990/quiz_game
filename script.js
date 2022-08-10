@@ -98,7 +98,7 @@ function questionFour() {
      nextButton.addEventListener('click', function nextQuestion4() {
         questionFive();  
     });
- };
+};
 
  function questionFive() {
      buttonReset();
@@ -114,7 +114,7 @@ function questionFour() {
      nextButton.addEventListener('click', function nextQuestion5() {
         questionSix();   
     });
- };
+};
 
  function questionSix() {
      buttonReset();
@@ -130,7 +130,7 @@ function questionFour() {
      nextButton.addEventListener('click', function nextQuestion6() { 
         questionSeven();  
     });
- };
+};
 
  function questionSeven() {
     buttonReset();
@@ -198,45 +198,53 @@ function questionTen() {
    });
 };
 
-//variables for name input and score
-var nameInput = document.getElementById('name');
-var scoreInput = document.getElementById('score');
+//variables f
 var post = document.getElementById('post');
+var nameInput = document.getElementById('name');
+var scoreResult = document.getElementById('score');
 var enterBtn = document.getElementById('enter');
 var scoreBoard = document.getElementById('score-board');
+var highScores = document.getElementById('high-scores');
+var scoreList = document.getElementById('score-list');
 
-var storedName = document.getElementById('stored-name');
-var storedScore = document.getElementById('stored-score');
 
+//hide game over elements
 enterBtn.classList.add('hide');
-
 post.classList.add('hide');
 nameInput.classList.add('hide');
-scoreInput.classList.add('hide');
+scoreResult.classList.add('hide');
 scoreBoard.classList.add('hide');
+//highScores.classList.add('')
 
 //gameOver function
  function gameOver() {
     nextButton.classList.add('hide'); //hide buttons
     answerButtonsEl.classList.add('hide'); //hide buttons
-    timerEl.classList.add('hide'); //hide timer
-    questionEl.textContent = "Game Over. Enter your name below."; //Tell user their score
+    timerEl.classList.add('hide'); //hide timer  
+    post.classList.remove('hide'); //show post
+    nameInput.classList.remove('hide'); //show name input
+    scoreResult.classList.remove('hide'); //show score result
+    enterBtn.classList.remove('hide'); //show enter button
+    scoreBoard.classList.remove('hide'); //show the score board
     //todo enter name with score
-    post.classList.remove('hide');
-    nameInput.classList.remove('hide');
-    scoreInput.classList.remove('hide');
-    scoreInput.textContent = "Score: " + score;
-    enterBtn.classList.remove('hide');
-    scoreBoard.classList.remove('hide');
+    questionEl.textContent = "Game Over. Enter your name below."; 
+    scoreResult.textContent = "Score: " + score; //Tell user their score
     //todo store name and score input and display onto high score list
-  
+    var name = localStorage.getItem('name');
+    var storedName = document.getElementById('stored-name');
+    var storedScore = document.getElementById('stored-score');
+    
+    
+   
+
+    enterBtn.addEventListener('click', function saveScore() { //when user clicks enter button
+       // var highScores = JSON.parse(localStorage.getItem('highScores'));
+        storedName.textContent = name;
+        storedScore.textContent = score;
+    });  
 };
 
-
-
- 
 //timer function
-
 function countdown() { 
     var timeInterval = setInterval(function () {
     timeLeft--;
