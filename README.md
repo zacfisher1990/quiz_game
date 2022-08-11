@@ -1,6 +1,7 @@
+**Coding Quiz**<br>
+
 Link to project: [https://zacfisher1990.github.io/quiz_game/](https://zacfisher1990.github.io/quiz_game/)
 
-**Coding Quiz**
 The purpose of this project is to allow the user take a timed quiz with questions on coding/web development. 
 
 The first page presents the user with the instructions and a start button. 
