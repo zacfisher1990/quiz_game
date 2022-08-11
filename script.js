@@ -18,9 +18,6 @@ var nextButton = document.getElementById('next-btn');   //variable nextButton ge
 var gameTitle = document.getElementById('game-title');
 var instructions = document.getElementById('instructions');
 
-
-
-
 instructions.textContent = "You have 1 minute to answer 10 questions. For every question you get wrong you lose 5 seconds on the timer. The quiz is over when you have completed all 10 questions or when the timer runs out. Good Luck!";
 nextButton.classList.add('hide'); //hide next button
 
@@ -200,21 +197,23 @@ function questionTen() {
 
 //variables f
 var post = document.getElementById('post');
-var nameInput = document.getElementById('name');
-var scoreResult = document.getElementById('score');
 var enterBtn = document.getElementById('enter');
 var scoreBoard = document.getElementById('score-board');
 var highScores = document.getElementById('high-scores');
 var scoreList = document.getElementById('score-list');
 
-
 //hide game over elements
 enterBtn.classList.add('hide');
 post.classList.add('hide');
-nameInput.classList.add('hide');
-scoreResult.classList.add('hide');
 scoreBoard.classList.add('hide');
 //highScores.classList.add('')
+
+var scoreResult = document.getElementById('score');
+var nameInput = document.getElementById('name');
+var storedName = document.getElementById('stored-name');
+var storedScore = document.getElementById('stored-score');
+nameInput.classList.add('hide');
+scoreResult.classList.add('hide');
 
 //gameOver function
  function gameOver() {
@@ -226,23 +225,20 @@ scoreBoard.classList.add('hide');
     scoreResult.classList.remove('hide'); //show score result
     enterBtn.classList.remove('hide'); //show enter button
     scoreBoard.classList.remove('hide'); //show the score board
-    //todo enter name with score
     questionEl.textContent = "Game Over. Enter your name below."; 
-    scoreResult.textContent = "Score: " + score; //Tell user their score
-    //todo store name and score input and display onto high score list
-    var name = localStorage.getItem('name');
-    var storedName = document.getElementById('stored-name');
-    var storedScore = document.getElementById('stored-score');
+    scoreResult.textContent = "Your score:  " + score; //Tell user their score
     
+    function saveScore() {
+        var storedName = document.getElementById('stored-name');
+        var name = document.getElementById('name').value;
+        storedName.textContent = name + " " + score;
+        localStorage.getItem(name, score);
+    }
     
-   
-
-    enterBtn.addEventListener('click', function saveScore() { //when user clicks enter button
-       // var highScores = JSON.parse(localStorage.getItem('highScores'));
-        storedName.textContent = name;
-        storedScore.textContent = score;
-    });  
-};
+    enterBtn.addEventListener('click', function(event) { //when user clicks enter button
+        saveScore();
+    });
+}
 
 //timer function
 function countdown() { 
